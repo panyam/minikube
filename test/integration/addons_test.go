@@ -327,20 +327,20 @@ func validateRegistryCredsAddon(ctx context.Context, t *testing.T, profile strin
 	}
 
 	// Check a few secrets exists that match our test data
-	// In our test aws and gcp are set, docker and acr are disabled - so they will be set to "changeme"
+	// In our test aws and gcp are set, docker and acr are disabled - so they will be set to "MINIKUBE_DEFAULT_VALUE"
 	rr, err = Run(t, exec.CommandContext(ctx, "kubectl", "--context", profile, "-n", "kube-system", "get", "secret", "-o", "yaml"))
 	if err != nil {
 		t.Errorf("failed to get secrets. args %q : %v", rr.Command(), err)
 	}
 
 	expected := []string{
-		"DOCKER_PRIVATE_REGISTRY_PASSWORD: Y2hhbmdlbWU=",
-		"DOCKER_PRIVATE_REGISTRY_SERVER: Y2hhbmdlbWU=",
-		"DOCKER_PRIVATE_REGISTRY_USER: Y2hhbmdlbWU=",
+		"DOCKER_PRIVATE_REGISTRY_PASSWORD: TUlOSUtVQkVfREVGQVVMVF9WQUxVRQ==",
+		"DOCKER_PRIVATE_REGISTRY_SERVER: TUlOSUtVQkVfREVGQVVMVF9WQUxVRQ==",
+		"DOCKER_PRIVATE_REGISTRY_USER: TUlOSUtVQkVfREVGQVVMVF9WQUxVRQ==",
 
-		"ACR_CLIENT_ID: Y2hhbmdlbWU=",
-		"ACR_PASSWORD: Y2hhbmdlbWU=",
-		"ACR_URL: Y2hhbmdlbWU=",
+		"ACR_CLIENT_ID: TUlOSUtVQkVfREVGQVVMVF9WQUxVRQ==",
+		"ACR_PASSWORD: TUlOSUtVQkVfREVGQVVMVF9WQUxVRQ==",
+		"ACR_URL: TUlOSUtVQkVfREVGQVVMVF9WQUxVRQ==",
 
 		"AWS_ACCESS_KEY_ID: dGVzdF9hd3NfYWNjZXNzaWQ=",
 		"AWS_SECRET_ACCESS_KEY: dGVzdF9hd3NfYWNjZXNza2V5",
